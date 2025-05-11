@@ -22,7 +22,6 @@ interface Props {
   withDefaults(value1, value2)
     - value1 : 설정할 값
     - value2 : default value
-
 */
 withDefaults(defineProps<Props>(), {
   src: 'https://www.youtube.com/embed/zmq2zu-UsRk',
