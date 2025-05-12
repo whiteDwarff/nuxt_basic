@@ -90,6 +90,7 @@ definePageMeta({
   pageType: '',
   keepalive: true,
   alias: ['/testA/:courseSlug', '/testB/:courseSlug'],
+  // layout: 'same-layout',
 });
 </script>
 
