@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-xl">
+  <div>
     <AppCard>
       <template #header>
         <div class="text-h5 text-weight-medium">{{ course?.title }}</div>
@@ -45,6 +45,27 @@
       <p class="q-mt-lg text-grey-8">
         {{ course?.content }}
       </p>
+      <q-separator class="q-mb-lg" />
+      <q-form class="q-gutter-y-md">
+        <q-btn
+          label="수강완료"
+          class="full-width"
+          color="green"
+          unelevated
+          :outline="completed ? false : true"
+          :icon="completed ? 'check' : undefined"
+          @click="completed = !completed"
+        />
+        <q-input
+          v-model="memo"
+          type="textarea"
+          outlined
+          dense
+          placeholder="메모를 작성해주세요."
+          rows="3"
+          autogrow
+        />
+      </q-form>
     </AppCard>
   </div>
 </template>
@@ -53,7 +74,23 @@
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
 
-const { course } = uesCourse(courseSlug);
+const { course, prevCourse, nextCourse } = uesCourse(courseSlug);
+const memo = ref('');
+const completed = ref(false);
+/*
+  해당 컴포넌트에 대한 메타 데이터를 설정할 수 있다.
+  ***
+  컴포넌트 내부에서 정의되어 사용해도 전달된 메타 데이터는 컴포넌트 밖으로 끌어올려진다.
+  따라서 컴포넌트 내에서 정의한 변수나 메서드를 참조할 수 없다.
+*/
+definePageMeta({
+  // 리렌더링을 결정하는 key
+  key: route => route.fullPath,
+  // custom
+  pageType: '',
+  keepalive: true,
+  alias: ['/testA/:courseSlug', '/testB/:courseSlug'],
+});
 </script>
 
 <style scoped></style>
