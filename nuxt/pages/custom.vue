@@ -1,7 +1,7 @@
 <template>
   <!-- 
     Nasted Routing을 하여 /custom 하위의 모든 컴포넌트를
-    custom layout 적용
+    custom layout 적용 
   -->
   <NuxtLayout name="custom">
     <NuxtPage />

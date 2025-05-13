@@ -66,6 +66,23 @@
           autogrow
         />
       </q-form>
+      <template #footer>
+        <q-btn
+          v-if="prevCourse"
+          label="이전 강의"
+          color="primary"
+          unelevated
+          @click="movePage(prevCourse.path)"
+        />
+        <q-space />
+        <q-btn
+          v-if="nextCourse"
+          label="다음 강의"
+          color="primary"
+          unelevated
+          @click="movePage(nextCourse.path)"
+        />
+      </template>
     </AppCard>
   </div>
 </template>
@@ -92,6 +109,10 @@ definePageMeta({
   alias: ['/testA/:courseSlug', '/testB/:courseSlug'],
   // layout: 'same-layout',
 });
+
+const movePage = async (path: string) => {
+  await navigateTo(path);
+};
 </script>
 
 <style scoped></style>
